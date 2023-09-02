@@ -2,14 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_x_app/controllers/product_controller.dart';
 
+import '../widget/product_card.dart';
+
 class MyHomePage extends StatelessWidget {
-  final productController = Get.put(ProductController());
+  final ProductController productController;
+
+  const MyHomePage({super.key, required this.productController});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('GETX Demo'),
+        title: const Text('GETX DEMO'),
       ),
       body: Obx(() {
         if (productController.isLoading.value) {
@@ -20,7 +24,7 @@ class MyHomePage extends StatelessWidget {
           return ListView.builder(
             itemCount: productController.productList.length,
             itemBuilder: (context, index) {
-              return Text('${productController.productList[index].name}');
+              return ProductCard(product: productController.productList[index]);
             },
           );
         }

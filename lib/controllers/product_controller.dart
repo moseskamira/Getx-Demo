@@ -18,7 +18,7 @@ class ProductController extends GetxController {
     try {
       productRepository = ProductRepository();
       isLoading(true);
-      final response = await productRepository.fetchProducts('colourpop');
+      final response = await productRepository.fetchProducts();
       if (response.success) {
         final dynamicRespData = response.data;
         List<Product> prodList = dynamicRespData
