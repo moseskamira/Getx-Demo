@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_x_app/controllers/app_controller_binding.dart';
 import 'package:get_x_app/pages/my_home_page.dart';
-import 'controllers/product_controller.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,14 +12,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final productController = Get.put(ProductController());
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
+      initialBinding: AppControllerBinding(),
       title: 'Getx Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(productController: productController),
+      home: const MyHomePage(),
     );
   }
 }
