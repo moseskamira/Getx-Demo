@@ -9,7 +9,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Getx Demo'),
+        title: const Text('GETX Demo'),
       ),
       body: Obx(() {
         if (productController.isLoading.value) {
