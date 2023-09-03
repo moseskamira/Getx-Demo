@@ -1,30 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_x_app/controllers/product_controller.dart';
-
 import '../widget/product_card.dart';
 
 class MyHomePage extends StatelessWidget {
-  final ProductController productController;
-
-  const MyHomePage({super.key, required this.productController});
+  const MyHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('GETX DEMO'),
+        centerTitle: true,
       ),
       body: Obx(() {
-        if (productController.isLoading.value) {
+        if (Get.find<ProductController>().isLoading.value) {
           return const Center(
             child: CircularProgressIndicator(),
           );
         } else {
           return ListView.builder(
-            itemCount: productController.productList.length,
+            itemCount: Get.find<ProductController>().productList.length,
             itemBuilder: (context, index) {
-              return ProductCard(product: productController.productList[index]);
+              return ProductCard(
+                product: Get.find<ProductController>().productList[index],
+              );
             },
           );
         }
