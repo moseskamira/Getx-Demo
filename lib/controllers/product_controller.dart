@@ -5,7 +5,6 @@ import '../repositories/product_repository.dart';
 class ProductController extends GetxController {
   var isLoading = true.obs;
   late ProductRepository productRepository;
-
   List<Product> productList = <Product>[].obs;
 
   @override
