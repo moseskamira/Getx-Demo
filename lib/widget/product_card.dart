@@ -91,9 +91,7 @@ class ProductCard extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 color: Colors.purple,
-                borderRadius: BorderRadius.circular(
-                  5.0,
-                ),
+                borderRadius: BorderRadius.circular(5.0),
               ),
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Center(
