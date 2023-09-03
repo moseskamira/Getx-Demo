@@ -88,7 +88,7 @@ class ProductDetailsPage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Product Price: ${Get.arguments.price}',
+                    '${Get.arguments.currency}: ${Get.arguments.price}',
                     style: const TextStyle(
                       fontSize: 18,
                       color: Colors.black,
