@@ -3,14 +3,14 @@ import 'package:get/get.dart';
 import 'package:get_x_app/controllers/product_controller.dart';
 import '../widget/product_card.dart';
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
+class ProductsPage extends StatelessWidget {
+  const ProductsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('GETX DEMO'),
+        title: const Text('PRODUCTS'),
         centerTitle: true,
       ),
       body: Obx(() {
@@ -22,8 +22,13 @@ class MyHomePage extends StatelessWidget {
           return ListView.builder(
             itemCount: Get.find<ProductController>().productList.length,
             itemBuilder: (context, index) {
-              return ProductCard(
-                product: Get.find<ProductController>().productList[index],
+              return InkWell(
+                onTap: () {
+                  print('I am TESTING THIS: $index');
+                },
+                child: ProductCard(
+                  product: Get.find<ProductController>().productList[index],
+                ),
               );
             },
           );
