@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'products_page.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -9,7 +8,7 @@ class WelcomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('GETX DEMO APP'),
+        title: const Text('Getx Demo App'),
         centerTitle: true,
       ),
       body: Column(
@@ -19,9 +18,9 @@ class WelcomePage extends StatelessWidget {
           Center(
             child: ElevatedButton(
               onPressed: () {
-                Get.toNamed('/products', arguments: 'Products List');
+                Get.toNamed('/products');
               },
-              child: Text('SHOW PRODUCTS'),
+              child: const Text('SHOW PRODUCTS'),
             ),
           )
         ],
