@@ -5,7 +5,7 @@ This is project is intended to demo the use of GETX Library.
 ## Description:
 
 - State Management.
-- Routing control
+- NamedRoutes
 - Retrofit for Api calls
 
 ## Prerequisites

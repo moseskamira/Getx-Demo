@@ -10,7 +10,7 @@ class ProductsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('PRODUCTS'),
+        title: const Text('Products List'),
         centerTitle: true,
       ),
       body: Obx(() {
@@ -24,7 +24,9 @@ class ProductsPage extends StatelessWidget {
             itemBuilder: (context, index) {
               return InkWell(
                 onTap: () {
-                  print('I am TESTING THIS: $index');
+                  Get.toNamed('/product_details',
+                      arguments:
+                          Get.find<ProductController>().productList[index]);
                 },
                 child: ProductCard(
                   product: Get.find<ProductController>().productList[index],

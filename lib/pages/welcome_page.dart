@@ -19,7 +19,7 @@ class WelcomePage extends StatelessWidget {
           Center(
             child: ElevatedButton(
               onPressed: () {
-                Get.to(const ProductsPage());
+                Get.toNamed('/products', arguments: 'Products List');
               },
               child: Text('SHOW PRODUCTS'),
             ),
