@@ -21,8 +21,8 @@ class ProductRepository implements IProductRepository {
   }
 
   @override
-  Future<NetworkResponse> fetchProducts() async {
-    var res = await _apiRequest?.getProducts();
+  Future<NetworkResponse> fetchProducts(String brand) async {
+    var res = await _apiRequest?.getProducts(brand);
     return NetworkResponse(true, data: res);
   }
 }

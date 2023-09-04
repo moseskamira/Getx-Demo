@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      //initialBinding: AppControllerBinding(),
+      initialBinding: AppControllerBinding(),
       title: 'GETX Demo',
       initialRoute: '/',
       getPages: [

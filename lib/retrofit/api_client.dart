@@ -9,5 +9,5 @@ abstract class ApiClient {
   factory ApiClient({required Dio dio}) => _ApiClient(dio);
 
   @GET(Apis.products)
-  Future<dynamic> getProducts();
+  Future<dynamic> getProducts(@Query('brand') String brand);
 }

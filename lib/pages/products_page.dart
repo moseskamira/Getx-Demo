@@ -18,7 +18,7 @@ class ProductsPage extends StatelessWidget {
           return const Center(
             child: CircularProgressIndicator(),
           );
-        } else {
+        } else if(Get.find<ProductController>().productList.isNotEmpty) {
           return ListView.builder(
             itemCount: Get.find<ProductController>().productList.length,
             itemBuilder: (context, index) {
@@ -34,6 +34,8 @@ class ProductsPage extends StatelessWidget {
               );
             },
           );
+        }else{
+          return const Center(child: Text('No Products Found'));
         }
       }),
     );
