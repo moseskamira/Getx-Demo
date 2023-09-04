@@ -79,7 +79,7 @@ class ProductDetailsPage extends StatelessWidget {
                     },
                   ),
                   Text(
-                    'Product Category: ${Get.arguments.category}',
+                    'Category: ${Get.arguments.category}',
                     style: const TextStyle(
                       fontSize: 18,
                       color: Colors.black,
@@ -97,7 +97,7 @@ class ProductDetailsPage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Product ID: ${Get.arguments.id}',
+                    'ID: ${Get.arguments.id}',
                     style: const TextStyle(
                       fontSize: 18,
                       color: Colors.black,

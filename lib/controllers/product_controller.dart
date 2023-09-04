@@ -1,6 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:get_x_app/models/product.dart';
 import '../repositories/product_repository.dart';
+import '../utils/toast_message.dart';
 
 class ProductController extends GetxController {
   var isLoading = true.obs;
@@ -24,7 +26,11 @@ class ProductController extends GetxController {
             .map<Product>((product) => Product.fromJson(product))
             .toList();
         productList.assignAll(prodList);
-      } else {}
+      } else {
+        showSnackBar('Something went wrong', error: true);
+      }
+    } on DioException catch (res, _) {
+      showSnackBar('${res.response?.data['error']}', error: true);
     } finally {
       isLoading(false);
     }
