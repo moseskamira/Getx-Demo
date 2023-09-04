@@ -5,7 +5,7 @@ import '../repositories/product_repository.dart';
 import '../utils/toast_message.dart';
 
 class ProductController extends GetxController {
-  var isLoading = true.obs;
+  var isLoading = false.obs;
   late ProductRepository productRepository;
   List<Product> productList = <Product>[].obs;
 
@@ -17,9 +17,9 @@ class ProductController extends GetxController {
 
   void fetchProducts() async {
     try {
-      productRepository = ProductRepository();
       isLoading(true);
-      final response = await productRepository.fetchProducts();
+      productRepository = ProductRepository();
+      final response = await productRepository.fetchProducts('colourpop');
       if (response.success) {
         final dynamicRespData = response.data;
         List<Product> prodList = dynamicRespData
