@@ -6,22 +6,7 @@ import 'package:local_auth_ios/local_auth_ios.dart';
 
 class BiometricsController extends GetxController {
   final _localAuth = LocalAuthentication();
-  var hasFingerPrintLock = false.obs;
-  var hasFaceLock = false.obs;
   var isUserAuthenticated = false.obs;
-
-  void getAvailableBiometrics() async {
-    bool hasLocalAuthentication = await _localAuth.canCheckBiometrics;
-    if (hasLocalAuthentication) {
-      List<BiometricType> availableBiometrics =
-          await _localAuth.getAvailableBiometrics();
-      hasFaceLock.value = availableBiometrics.contains(BiometricType.face);
-      hasFingerPrintLock.value =
-          availableBiometrics.contains(BiometricType.fingerprint);
-    } else {
-      showSnackBar('Local Authentication Not Supported', error: true);
-    }
-  }
 
   void authenticateUser() async {
     try {
@@ -29,7 +14,6 @@ class BiometricsController extends GetxController {
         AndroidAuthMessages(
           signInTitle: 'Biometric Authentication Required!',
           cancelButton: 'Cancel',
-          biometricHint: 'Verify Your Identity',
           goToSettingsButton: 'Settings',
           goToSettingsDescription: 'Please setup your Fingerprint/Face',
         ),
@@ -39,27 +23,24 @@ class BiometricsController extends GetxController {
           goToSettingsDescription: 'Please setup your Fingerprint/Face',
         ),
       ];
-      isUserAuthenticated.value = await _localAuth.authenticate(
-          localizedReason: 'Authenticate YourSelf', authMessages: authMessages);
-      if (isUserAuthenticated.value) {
-        showSnackBar('Authenticated Successfully', error: false);
+      bool isBiometricSupported = await _localAuth.isDeviceSupported();
+      bool canCheckBiometrics = await _localAuth.canCheckBiometrics;
+      if (isBiometricSupported && canCheckBiometrics) {
+        List<BiometricType> availableBiometrics =
+            await _localAuth.getAvailableBiometrics();
+        isUserAuthenticated.value = await _localAuth.authenticate(
+            localizedReason: 'Verify Your Identity',
+            authMessages: authMessages);
+        if (isUserAuthenticated.value) {
+          showSnackBar('Authenticated Successfully', error: false);
+        } else {
+          showSnackBar('Failed Authentication', error: true);
+        }
       } else {
-        showSnackBar('Failed Authentication', error: true);
+        showSnackBar('Feature not supported', error: true);
       }
     } catch (e) {
       showSnackBar(e.toString(), error: true);
     }
-  }
-
-  @override
-  void onInit() {
-    super.onInit();
-    getAvailableBiometrics();
-  }
-
-  @override
-  void onClose() {
-    // TODO: implement onClose
-    super.onClose();
   }
 }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_x_app/binding/app_controller_binding.dart';
+import 'package:get_x_app/pages/biometric_page.dart';
 import 'package:get_x_app/pages/product_details_page.dart';
 import 'package:get_x_app/pages/products_page.dart';
 import 'package:get_x_app/pages/welcome_page.dart';
-
 import 'binding/product_controller_binding.dart';
 
 void main() {
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialBinding: AppControllerBinding(),
-      title: 'GETX Demo',
+      title: 'GetX Demo',
       initialRoute: '/',
       getPages: [
         GetPage(name: '/', page: () => const MyApp()),
@@ -32,6 +32,11 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/product_details',
           page: () => const ProductDetailsPage(),
+          transition: Transition.leftToRight,
+        ),
+        GetPage(
+          name: '/biometrics',
+          page: () => const BiometricPage(),
           transition: Transition.leftToRight,
         ),
       ],

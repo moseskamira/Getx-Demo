@@ -8,6 +8,5 @@ class AppControllerBinding extends Bindings {
   void dependencies() {
     Get.lazyPut<NetworkController>(() => NetworkController());
     Get.lazyPut<ImageController>(() => ImageController());
-    Get.lazyPut<BiometricsController>(() => BiometricsController());
   }
 }
