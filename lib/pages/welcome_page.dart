@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:get_x_app/controllers/image_controller.dart';
 import 'package:get_x_app/controllers/network_controller.dart';
 import 'package:image_picker/image_picker.dart';
-import '../controllers/biometrics_controller.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -21,80 +20,29 @@ class WelcomePage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Obx(
-            () => Get.find<ImageController>().selectedImagePath == ''
-                ? Text('No Image Selected')
-                : Image.file(
-                    File(Get.find<ImageController>().selectedImagePath.value),
-                  ),
-          ),
-          Obx(
-            () => Text(Get.find<ImageController>().selectedImageSize == ''
-                ? ''
-                : Get.find<ImageController>().selectedImageSize.value),
-          ),
-          Obx(
             () => Padding(
               padding: const EdgeInsets.all(10.0),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    Get.find<NetworkController>().connectionStatus.value == 1
-                        ? 'You are using: WI FI'
-                        : Get.find<NetworkController>()
-                                    .connectionStatus
-                                    .value ==
-                                2
-                            ? 'You are using: Mobile Data'
-                            : '${Get.find<NetworkController>().connectionStatus.value}',
+                  Center(
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      child: Text(
+                        Get.find<NetworkController>().connectionStatus.value ==
+                                1
+                            ? 'You are using: WI FI'
+                            : Get.find<NetworkController>()
+                                        .connectionStatus
+                                        .value ==
+                                    2
+                                ? 'You are using: Mobile Data'
+                                : '${Get.find<NetworkController>().connectionStatus.value}',
+                      ),
+                    ),
                   ),
                 ],
               ),
-            ),
-          ),
-          Obx(
-            () => Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Row(
-                children: [
-                  Get.find<BiometricsController>().hasFingerPrintLock.value
-                      ? const Icon(
-                          Icons.check,
-                          color: Colors.green,
-                        )
-                      : const Icon(
-                          Icons.clear,
-                          color: Colors.red,
-                        ),
-                  const Text('Finger Print Authentication'),
-                ],
-              ),
-            ),
-          ),
-          Obx(
-            () => Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Row(
-                children: [
-                  Get.find<BiometricsController>().hasFaceLock.value
-                      ? const Icon(
-                          Icons.check,
-                          color: Colors.green,
-                        )
-                      : const Icon(
-                          Icons.clear,
-                          color: Colors.red,
-                        ),
-                  const Text('FaceLock Authentication'),
-                ],
-              ),
-            ),
-          ),
-          Center(
-            child: ElevatedButton(
-              onPressed: () {
-                Get.toNamed('/products');
-              },
-              child: const Text('SHOW PRODUCTS'),
             ),
           ),
           Center(
@@ -113,12 +61,38 @@ class WelcomePage extends StatelessWidget {
               child: const Text('GALLERY'),
             ),
           ),
+          Obx(
+            () => Get.find<ImageController>().selectedImagePath.isEmpty
+                ? const Text(
+                    '',
+                    style: TextStyle(fontSize: 0),
+                  )
+                : Image.file(
+                    File(Get.find<ImageController>().selectedImagePath.value),
+                  ),
+          ),
+          Obx(
+            () => Get.find<ImageController>().selectedImageSize.isNotEmpty
+                ? const Text(
+                    '',
+                    style: TextStyle(fontSize: 0),
+                  )
+                : Text(Get.find<ImageController>().selectedImageSize.value),
+          ),
           Center(
             child: ElevatedButton(
               onPressed: () {
-                Get.find<BiometricsController>().authenticateUser();
+                Get.toNamed('/products');
               },
-              child: const Text('BIOMETRIC'),
+              child: const Text('SHOW PRODUCTS'),
+            ),
+          ),
+          Center(
+            child: ElevatedButton(
+              onPressed: () {
+                Get.toNamed('/biometrics');
+              },
+              child: const Text('Go TO BIOMETRIC SCREEN'),
             ),
           ),
         ],
