@@ -4,9 +4,15 @@ This is project is intended to demo the use of GETX Library.
 
 ## Description:
 
-- State Management.
+Below is a list of the Topics to handle in this project demo.
+
+- GetxController.
+- Binding
 - NamedRoutes
 - Retrofit for Api calls
+- Network Connectivity Check
+- Device Camera and Gallery Usage
+- Biometrics(Local Auth)-FingerPrint/FaceID Authentication.
 
 ## Prerequisites
 
