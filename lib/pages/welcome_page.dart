@@ -105,6 +105,14 @@ class WelcomePage extends StatelessWidget {
               child: const Text('SHOW FORM'),
             ),
           ),
+          Center(
+            child: ElevatedButton(
+              onPressed: () {
+                Get.toNamed('/signature');
+              },
+              child: const Text('SHOW SIGNATURE PAD'),
+            ),
+          ),
         ],
       ),
     );

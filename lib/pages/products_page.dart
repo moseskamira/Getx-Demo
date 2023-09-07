@@ -21,24 +21,20 @@ class ProductsPage extends StatelessWidget {
         } else if (Get.find<ProductController>().productList.isNotEmpty) {
           return Column(
             children: [
-              Obx(
-                () => Text(
-                  Get.find<ProductController>().scrollPositionMessage.value,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    color: Colors.green,
-                    fontWeight: FontWeight.bold,
-                  ),
+              Text(
+                Get.find<ProductController>().scrollPositionMessage.value,
+                style: const TextStyle(
+                  fontSize: 18,
+                  color: Colors.green,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              Obx(
-                () => Text(
-                  Get.find<ProductController>().scrollNotificationMessage.value,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
+              Text(
+                Get.find<ProductController>().scrollNotificationMessage.value,
+                style: const TextStyle(
+                  fontSize: 18,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               Expanded(
@@ -59,11 +55,13 @@ class ProductsPage extends StatelessWidget {
                     }
                     return true;
                   },
-                  child: ListView.builder(
-                    controller: Get.find<ProductController>().scrollController,
+                  child: ReorderableListView.builder(
                     itemCount: Get.find<ProductController>().productList.length,
-                    itemBuilder: (context, index) {
+                    itemBuilder: (BuildContext context, int index) {
                       return InkWell(
+                        key: ValueKey(
+                          Get.find<ProductController>().productList[index],
+                        ),
                         onTap: () {
                           Get.toNamed('/product_details',
                               arguments: Get.find<ProductController>()
@@ -74,6 +72,10 @@ class ProductsPage extends StatelessWidget {
                               Get.find<ProductController>().productList[index],
                         ),
                       );
+                    },
+                    onReorder: (int oldIndex, int newIndex) {
+                      Get.find<ProductController>()
+                          .reorderProductList(oldIndex, newIndex);
                     },
                   ),
                 ),

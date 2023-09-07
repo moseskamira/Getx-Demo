@@ -5,6 +5,7 @@ import 'package:get_x_app/pages/biometric_page.dart';
 import 'package:get_x_app/pages/product_details_page.dart';
 import 'package:get_x_app/pages/products_page.dart';
 import 'package:get_x_app/pages/sign_in_page.dart';
+import 'package:get_x_app/pages/signature_page.dart';
 import 'package:get_x_app/pages/welcome_page.dart';
 import 'binding/product_controller_binding.dart';
 
@@ -38,6 +39,11 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/biometrics',
           page: () => const BiometricPage(),
+          transition: Transition.leftToRight,
+        ),
+        GetPage(
+          name: '/signature',
+          page: () => const SignaturePage(),
           transition: Transition.leftToRight,
         ),
         GetPage(
