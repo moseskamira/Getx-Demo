@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_x_app/models/product.dart';
 import '../repositories/product_repository.dart';
@@ -7,11 +8,30 @@ import '../utils/toast_message.dart';
 class ProductController extends GetxController {
   var isLoading = false.obs;
   late ProductRepository productRepository;
-  List<Product> productList = <Product>[].obs;
+  List<Product> productList = List<Product>.empty(growable: true).obs;
+  var scrollPositionMessage = ''.obs;
+  var scrollNotificationMessage = ''.obs;
+  late ScrollController scrollController;
+
+  void initializeScrollController() {
+    scrollController = ScrollController();
+    scrollController.addListener(() {
+      if (scrollController.offset >=
+              scrollController.position.maxScrollExtent &&
+          !scrollController.position.outOfRange) {
+        scrollPositionMessage.value = 'Reached Bottom';
+      } else if (scrollController.offset <=
+              scrollController.position.minScrollExtent &&
+          !scrollController.position.outOfRange) {
+        scrollPositionMessage.value = 'Reached Top';
+      }
+    });
+  }
 
   @override
   void onInit() {
     fetchProducts();
+    initializeScrollController();
     super.onInit();
   }
 

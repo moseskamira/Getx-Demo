@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_x_app/utils/toast_message.dart';
 import 'package:local_auth/local_auth.dart';
@@ -6,7 +7,6 @@ import 'package:local_auth_ios/local_auth_ios.dart';
 
 class BiometricsController extends GetxController {
   final _localAuth = LocalAuthentication();
-  var isUserAuthenticated = false.obs;
 
   void authenticateUser() async {
     try {
@@ -28,18 +28,23 @@ class BiometricsController extends GetxController {
       if (isBiometricSupported && canCheckBiometrics) {
         List<BiometricType> availableBiometrics =
             await _localAuth.getAvailableBiometrics();
-        isUserAuthenticated.value = await _localAuth.authenticate(
-            localizedReason: 'Verify Your Identity',
-            authMessages: authMessages);
-        if (isUserAuthenticated.value) {
-          showSnackBar('Authenticated Successfully', error: false);
+        bool isUserAuthenticated = await _localAuth.authenticate(
+          localizedReason: 'Please verify your identity to grant access',
+          authMessages: authMessages,
+          options: const AuthenticationOptions(
+            useErrorDialogs: true,
+            stickyAuth: true,
+          ),
+        );
+        if (isUserAuthenticated) {
+          showSnackBar('User Authenticated Successfully', error: false);
         } else {
           showSnackBar('Failed Authentication', error: true);
         }
       } else {
         showSnackBar('Feature not supported', error: true);
       }
-    } catch (e) {
+    } on PlatformException catch (e) {
       showSnackBar(e.toString(), error: true);
     }
   }

@@ -69,10 +69,12 @@ class WelcomePage extends StatelessWidget {
                   )
                 : Image.file(
                     File(Get.find<ImageController>().selectedImagePath.value),
+                    width: 200,
+                    height: 100,
                   ),
           ),
           Obx(
-            () => Get.find<ImageController>().selectedImageSize.isNotEmpty
+            () => Get.find<ImageController>().selectedImageSize.isEmpty
                 ? const Text(
                     '',
                     style: TextStyle(fontSize: 0),
@@ -92,7 +94,15 @@ class WelcomePage extends StatelessWidget {
               onPressed: () {
                 Get.toNamed('/biometrics');
               },
-              child: const Text('Go TO BIOMETRIC SCREEN'),
+              child: const Text('SHOW BIOMETRIC SCREEN'),
+            ),
+          ),
+          Center(
+            child: ElevatedButton(
+              onPressed: () {
+                Get.toNamed('/signIn');
+              },
+              child: const Text('SHOW FORM'),
             ),
           ),
         ],
