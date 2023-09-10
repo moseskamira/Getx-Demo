@@ -22,7 +22,7 @@ class BiometricPage extends GetView<BiometricsController> {
               onPressed: () {
                 controller.authenticateUser();
               },
-              child: const Text('VERIFY IDENTITY'),
+              child: const Text('VERIFY YOUR IDENTITY'),
             ),
           ),
         ],
