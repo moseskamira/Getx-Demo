@@ -24,7 +24,7 @@ class FormController extends GetxController {
   String? validateFormInPuts(String input, TextInputType inputType) {
     if (inputType == TextInputType.emailAddress) {
       if (!GetUtils.isEmail(input)) {
-        return 'Provide a valid emailAddress';
+        return 'Provide a valid Email Address';
       } else {
         return null;
       }

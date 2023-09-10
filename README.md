@@ -4,15 +4,22 @@ This is project is intended to demo the use of GETX Library.
 
 ## Description:
 
-Below is a list of the Topics to handle in this project demo.
+Handled Technologies/Techniques/Tools/Libraries.
+NOTE: All discussed involves Getx;
 
 - GetxController.
+- GetView
+- GetWidget
 - Binding
 - NamedRoutes
 - Retrofit for Api calls
+- GetConnect for Api calls
 - Network Connectivity Check
 - Device Camera and Gallery Usage
 - Biometrics(Local Auth)-FingerPrint/FaceID Authentication.
+- ReorderableListView (You can change the order in which Products List is displayed)
+- Form Validation
+- Signature
 
 ## Prerequisites
 
@@ -68,6 +75,10 @@ flutter pub run build_runner watch --delete-conflicting-outputs
 flutter build apk
 ```
 
-## Product List:
+## Welcome Page-Menu:
+
+![List developers](/assets/images/welcome.png)
+
+## Product List (Re-order-able):
 
 ![List developers](/assets/images/prodlist.png)

@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_x_app/utils/toast_message.dart';
-import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImageController extends GetxController {
@@ -18,15 +17,6 @@ class ImageController extends GetxController {
         selectedImagePath.value = pickedImage.path;
         selectedImageSize.value =
             '${((File(selectedImagePath.value)).lengthSync() / 1024).toStringAsFixed(2)}kb';
-        // final croppedImageFile = await ImageCropper().cropImage(
-        //   sourcePath: selectedImagePath.value,
-        //   maxHeight: 100,
-        //   maxWidth: 100,
-        //   compressFormat: ImageCompressFormat.jpg,
-        // );
-        // if (croppedImageFile != null) {
-        //   croppedImagePath.value = croppedImageFile.path;
-        // }
       } else {
         showSnackBar('No Image Selected', error: true);
       }

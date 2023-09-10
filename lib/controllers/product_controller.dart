@@ -28,6 +28,14 @@ class ProductController extends GetxController {
     });
   }
 
+  void reorderProductList(int oldIndex, int newIndex) {
+    if (newIndex > oldIndex) {
+      newIndex = -1;
+    }
+    final items = productList.removeAt(oldIndex);
+    productList.insert(newIndex, items);
+  }
+
   @override
   void onInit() {
     fetchProducts();
