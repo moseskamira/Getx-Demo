@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialBinding: AppControllerBinding(),
-      title: 'GetX Demo',
+      title: 'GETX Demo',
       initialRoute: '/',
       getPages: AppPages.routes,
       theme: ThemeData(
