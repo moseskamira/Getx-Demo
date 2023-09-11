@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_x_app/binding/app_controller_binding.dart';
-import 'package:get_x_app/pages/biometric_page.dart';
-import 'package:get_x_app/pages/product_details_page.dart';
-import 'package:get_x_app/pages/products_page.dart';
-import 'package:get_x_app/pages/sign_in_page.dart';
-import 'package:get_x_app/pages/signature_page.dart';
 import 'package:get_x_app/pages/welcome_page.dart';
-import 'binding/product_controller_binding.dart';
+import 'package:get_x_app/routes/app_pages.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,35 +18,7 @@ class MyApp extends StatelessWidget {
       initialBinding: AppControllerBinding(),
       title: 'GetX Demo',
       initialRoute: '/',
-      getPages: [
-        GetPage(name: '/', page: () => const MyApp()),
-        GetPage(
-          name: '/products',
-          page: () => const ProductsPage(),
-          transition: Transition.leftToRight,
-          binding: ProductControllerBinding(),
-        ),
-        GetPage(
-          name: '/product_details',
-          page: () => const ProductDetailsPage(),
-          transition: Transition.leftToRight,
-        ),
-        GetPage(
-          name: '/biometrics',
-          page: () => const BiometricPage(),
-          transition: Transition.leftToRight,
-        ),
-        GetPage(
-          name: '/signature',
-          page: () => const SignaturePage(),
-          transition: Transition.leftToRight,
-        ),
-        GetPage(
-          name: '/signIn',
-          page: () => const SignInPage(),
-          transition: Transition.leftToRight,
-        ),
-      ],
+      getPages: AppPages.routes,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
